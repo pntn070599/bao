@@ -1,15 +1,16 @@
-import { View, Text } from "react-native";
+import { View, Text, Platform, StatusBar } from "react-native";
+import Home from "./screens/Home";
 
 export default function App() {
   return (
     <View
       style={{
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        backgroundColor: "white",
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
       }}
     >
-      <Text>Universal React with Expo</Text>
+      <Home />
     </View>
   );
 }
