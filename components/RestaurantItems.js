@@ -3,9 +3,8 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { CheckBox } from "react-native-elements";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-export default function RestaurantItems(props) {
+export default function RestaurantItems({ navigation, ...props }) {
   const [restaurantList, setRestaurantList] = useState([]);
-  console.log(restaurantList.length);
   return (
     <>
       {props.restaurantData.map((restaurant, index) => (
@@ -17,7 +16,13 @@ export default function RestaurantItems(props) {
           }}
           key={index}
         >
-          <TouchableOpacity activeOpacity={0.85} style={{ marginBottom: 30 }}>
+          <TouchableOpacity
+            activeOpacity={0.85}
+            style={{ marginBottom: 30 }}
+            onPress={() => {
+              navigation.navigate("RestaurantDetail", restaurant);
+            }}
+          >
             <RestaurantImage imageUrl={restaurant.imageUrl} />
           </TouchableOpacity>
 

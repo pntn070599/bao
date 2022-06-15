@@ -1,4 +1,6 @@
+import "react-native-gesture-handler";
 import { View, Text, Platform, StatusBar } from "react-native";
+import RootNavigation from "./navigation";
 import Home from "./screens/Home";
 
 export default function App() {
@@ -10,7 +12,7 @@ export default function App() {
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
       }}
     >
-      <Home />
+      <RootNavigation />
     </View>
   );
 }

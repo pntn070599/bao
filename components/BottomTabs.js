@@ -11,6 +11,7 @@ export default function BottomTabs() {
         margin: 10,
         marginHorizontal: 30,
         justifyContent: "space-between",
+        bottom: 1,
       }}
     >
       <Icon

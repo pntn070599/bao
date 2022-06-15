@@ -1,42 +1,48 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
-export default function HeaderTabs() {
-  const [activeTab, setActiveTab] = useState("Sản phẩm");
-
+export default function HeaderTabs({ navigation, ...props }) {
   return (
     <View style={{ flexDirection: "row", alignSelf: "center" }}>
       <HeaderButton
         text="Sản phẩm"
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        activeTab={props.activeTab}
+        setActiveTab={props.setActiveTab}
+        navigation={navigation}
       />
       <HeaderButton
         text="Yêu thích"
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        activeTab={props.activeTab}
+        setActiveTab={props.setActiveTab}
+        navigation={navigation}
       />
     </View>
   );
 }
 
-const HeaderButton = (props) => (
-  <TouchableOpacity
-    style={{
-      backgroundColor: props.activeTab === props.text ? "black" : "white",
-      paddingVertical: 6,
-      paddingHorizontal: 16,
-      borderRadius: 30,
-    }}
-    onPress={() => props.setActiveTab(props.text)}
-  >
-    <Text
+const HeaderButton = ({ navigation, ...props }) => {
+  const clickHandle = () => {
+    props.setActiveTab(props.text);
+  };
+
+  return (
+    <TouchableOpacity
       style={{
-        color: props.activeTab === props.text ? "white" : "black",
-        fontWeight: "bold",
+        backgroundColor: props.activeTab === props.text ? "black" : "white",
+        paddingVertical: 6,
+        paddingHorizontal: 16,
+        borderRadius: 30,
       }}
+      onPress={clickHandle}
     >
-      {props.text}
-    </Text>
-  </TouchableOpacity>
-);
+      <Text
+        style={{
+          color: props.activeTab === props.text ? "white" : "black",
+          fontWeight: "bold",
+        }}
+      >
+        {props.text}
+      </Text>
+    </TouchableOpacity>
+  );
+};
